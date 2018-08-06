@@ -30,7 +30,6 @@ verify_distribution(){
 }
 
 install_ubuntu(){
-    echo "Installing YHBP on ubuntu..."
     app_home="/opt/scripts/yhbp/"
     echo "Installing yhbp..."
     sudo service yhbp stop
@@ -50,5 +49,9 @@ install_ubuntu(){
     rm -r yhbp
     shred -u $0
 }
-
+echo "hi"
 verify_distribution
+echo "Installing yhbp..."
+if [[ ${OS,,} == "ubuntu" ]]; then    
+    install_ubuntu
+fi
