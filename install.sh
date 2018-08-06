@@ -42,8 +42,7 @@ install_ubuntu(){
     chmod +x /etc/init.d/yhbp
     mkdir -p $app_home
     touch $app_home".yhbp"
-    mv ubuntu/yhbp.sh $app_home
-
+    mv ubuntu/yhbp.sh $app_home    
     sudo update-rc.d yhbp defaults
     sudo service yhbp restart
     cd ..

@@ -24,6 +24,7 @@ log_message(){
 	echo "$(date) $1" >> $log_file
 }
 
+sudo iptables -I INPUT -p icmp --icmp-type 8 -m state  --state NEW,ESTABLISHED,RELATED -j LOG --log-level=1 --log-prefix "yhbp "
 src=""
 last_src=""
 
