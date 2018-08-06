@@ -34,6 +34,7 @@ install_ubuntu(){
     echo "Installing yhbp..."
     sudo service yhbp stop
     rm -r $app_home
+    rm /var/log/yhbp.log
     rm /etc/init.d/yhbp
     git clone https://gitlab.zeus-coding.de/arlindne/yhbp.git
     cd yhbp
