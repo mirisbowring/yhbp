@@ -33,18 +33,19 @@ install_ubuntu(){
     app_home="/opt/scripts/yhbp/"
     sudo service yhbp stop
     echo "Removing old files if available..."
-    rm -r $app_home > /var/log/yhbp.install.log
-    rm /var/log/yhbp.log > /var/log/yhbp.install.log
-    rm /etc/init.d/yhbp > /var/log/yhbp.install.log
-    git clone https://gitlab.zeus-coding.de/arlindne/yhbp.git > /var/log/yhbp.install.log
+    rm /var/log/yhbp.install.log &> /var/log/yhbp.install.log
+    rm -r $app_home &> /var/log/yhbp.install.log
+    rm /var/log/yhbp.log &> /var/log/yhbp.install.log
+    rm /etc/init.d/yhbp &> /var/log/yhbp.install.log
+    git clone https://gitlab.zeus-coding.de/arlindne/yhbp.git &> /var/log/yhbp.install.log
     cd yhbp
     mv ubuntu/yhbp /etc/init.d/ 
     chmod +x /etc/init.d/yhbp
     mkdir -p $app_home
     touch $app_home".yhbp"
     mv ubuntu/yhbp.sh $app_home    
-    sudo update-rc.d yhbp defaults > /var/log/yhbp.install.log
-    sudo service yhbp restart > /var/log/yhbp.install.log
+    sudo update-rc.d yhbp defaults &> /var/log/yhbp.install.log
+    sudo service yhbp restart &> /var/log/yhbp.install.log
     cd ..
     rm -r yhbp
     rm /var/log/yhbp.install.log
