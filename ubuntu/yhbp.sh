@@ -1,5 +1,7 @@
 #!/bin/bash
 
+log_file="/var/log/yhbp.log"
+
 function read_conf (){	
 	INPUT=.yhbp
 	OLDIFS=$IFS
@@ -17,12 +19,27 @@ function read_conf (){
 	IFS=$OLDIFS
 }
 
+log_message(){
+	touch $log_file
+	echo "$(date) $1" >> $log_file
+}
+
+src=""
+last_src=""
+
 tail -n0 -F /var/log/syslog | 
 	while IFS= read -r line
 	do		
 		if [[ $line = *"yhbp"* ]]; then
 			val=${line% DST=*}
-			value=${val##*SRC=}
-			notify-send "You have been pinged by $(read_conf $value)"
+			$src=${val##*SRC=}
+			msg="You have been pinged by $(read_conf $src)"
+			if [[ $src == $last_src ]]; then
+				log_message $msg
+			else
+				log_message $msg" (visible)"
+				notify-send $msg
+				$last_src = $src
+			fi
 		fi
 	done
