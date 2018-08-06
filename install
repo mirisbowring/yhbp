@@ -30,6 +30,7 @@ verify_distribution(){
 }
 
 install_ubuntu(){
+    echo "Installing YHBP on ubuntu..."
     app_home="/opt/scripts/yhbp/"
     echo "Installing yhbp..."
     sudo service yhbp stop
