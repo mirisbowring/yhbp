@@ -39,7 +39,7 @@ tail -n0 -F /var/log/syslog |
 			else
 				log_message $msg" (visible)"
 				notify-send $msg
-				$last_src = $src
+				$last_src=$src
 			fi
 		fi
 	done
