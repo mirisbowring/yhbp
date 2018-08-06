@@ -42,14 +42,14 @@ install_ubuntu(){
     mv ubuntu/yhbp /etc/init.d/ 
     chmod +x /etc/init.d/yhbp
     mkdir -p $app_home
-    touch $app_home".yhbp"
+    touch "$app_home.yhbp"
     mv ubuntu/yhbp.sh $app_home    
     sudo update-rc.d yhbp defaults &> /var/log/yhbp.install.log
     sudo service yhbp restart &> /var/log/yhbp.install.log
     cd ..
     rm -r yhbp
     rm /var/log/yhbp.install.log
-    shred -u $0
+    # shred -u $0 &> /var/log/yhbp.install.log
 }
 
 verify_distribution
