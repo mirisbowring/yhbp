@@ -38,6 +38,7 @@ tail -n0 -F /var/log/syslog |
 				log_message $msg
 			else
 				log_message "$msg (visible)"
+				echo $USER
 				sudo su $USER -c 'notify-send "$msg"'
 				last_src="$src"
 			fi
