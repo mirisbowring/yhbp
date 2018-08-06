@@ -37,8 +37,8 @@ tail -n0 -F /var/log/syslog |
 			if [[ $src == $last_src ]]; then
 				log_message $msg
 			else
-				log_message $msg" (visible)"
-				notify-send $msg
+				log_message "$msg (visible)"
+				sudo su $USER -c 'notify-send "$msg"'
 				last_src="$src"
 			fi
 		fi
