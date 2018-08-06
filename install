@@ -43,6 +43,8 @@ install_ubuntu(){
     mkdir -p $app_home
     touch "$app_home.yhbp"
     mv ubuntu/yhbp.sh $app_home    
+    mv ubuntu/yhbp_login.sh $app_home
+    sudo chmod +x +r "$app_home/yhbp_login.sh"
     sudo update-rc.d yhbp defaults &>> /var/log/yhbp.install.log
     sudo service yhbp restart &>> /var/log/yhbp.install.log
     cd ..
