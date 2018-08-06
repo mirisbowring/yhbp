@@ -30,6 +30,9 @@ last_src=""
 tail -n0 -F /var/log/syslog | 
 	while IFS= read -r line
 	do		
+		if [ -r "$HOME/.dbus/Xdbus" ]; then
+  			. "$HOME/.dbus/Xdbus"
+		fi
 		if [[ $line = *"yhbp"* ]]; then
 			val=${line% DST=*}
 			src=${val##*SRC=}
@@ -38,8 +41,9 @@ tail -n0 -F /var/log/syslog |
 				log_message $msg
 			else
 				log_message "$msg (visible)"
-				echo $USER
-				sudo su $USER -c 'notify-send "$msg"'
+				echo "!"
+				su arlindne -c 'notify-send "$msg"'
+				echo "test"
 				last_src="$src"
 			fi
 		fi
